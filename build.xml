@@ -26,13 +26,11 @@
     </fileset>
   </path>
 
-  <setclasspath />
-
-
   <target name="init">
     <mkdir dir="${build}"/>
     <mkdir dir="${dist}"/>
     <install />
+    <setclasspath />
   </target>
 
   <target name="build" depends="init">
@@ -53,7 +51,7 @@
     <clean />
   </target>
 
-  <target name="run" >
+  <target name="run" depends="build">
     <java classname="org.example.java.Example" fork="true" failonerror="true" classpathref="build.classpath">
     </java>
   </target>
