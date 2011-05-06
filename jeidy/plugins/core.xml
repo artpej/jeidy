@@ -7,6 +7,13 @@
         </sequential>
     </macrodef>
 
+    <macrodef name="setclasspath">
+        <sequential>
+          <script language="javascript" src="jeidy/lib/classpath.js"/>
+        </sequential>
+    </macrodef>
+
+
     <macrodef name="build">
         <sequential>
           <script language="javascript" src="jeidy/lib/compile.js"/> 

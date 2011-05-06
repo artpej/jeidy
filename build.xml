@@ -19,30 +19,14 @@
     </fileset>
   </import>
 
-  <path id="build.classpath">
-
-    <pathelement location="${scala.home}/lib/scala-library.jar" />
-
-    <pathelement location="${jruby.home}/lib/jruby.jar"/>
-
-    <pathelement location="${rhino.home}/js.jar"/>
-
-    <fileset dir="${clojure.home}">
-      <include name="**/*.jar"/>
-    </fileset>
-
-    <fileset dir="${groovy.home}/lib">
-      <include name="**/*.jar"/>
-    </fileset>
-
+  <path id="project.classpath">
     <pathelement location="${build}/main" />
-
     <fileset dir="${compile.library.path}">
       <include name="**/*.jar"/>
     </fileset>
-
   </path>
 
+  <setclasspath />
 
 
   <target name="init">

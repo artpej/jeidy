@@ -20,7 +20,7 @@
 		@${proguard.config.file}
 		-libraryjars ${java.home}/lib/rt.jar
 		-injars      ${project.name}-${project.version}.jar
-		-outjars     ${dist}/${project.name}-${project.version}.jar
+		-outjars     ${dist}/${project.name}-${project.version}-min.jar
 	</proguard>
   </target>
 
