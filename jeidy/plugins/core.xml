@@ -3,50 +3,50 @@
 
     <macrodef name="install">
         <sequential>
-	  <script language="javascript" src="jeidy/lib/install.js"/> 
+	  <script language="javascript" src="jeidy/lib/install.js" manager="javax"/> 
         </sequential>
     </macrodef>
 
     <macrodef name="setclasspath">
         <sequential>
-          <script language="javascript" src="jeidy/lib/classpath.js"/>
+          <script language="javascript" src="jeidy/lib/classpath.js" manager="javax"/>
         </sequential>
     </macrodef>
 
 
     <macrodef name="build">
         <sequential>
-          <script language="javascript" src="jeidy/lib/compile.js"/> 
+          <script language="javascript" src="jeidy/lib/compile.js" manager="javax"/> 
         </sequential>
     </macrodef>
 
     <macrodef name="dist">
         <sequential>
-          <script language="javascript" src="jeidy/lib/dist.js"/>
+          <script language="javascript" src="jeidy/lib/dist.js" manager="javax"/>
         </sequential>
     </macrodef>
 
    <macrodef name="tests">
         <sequential>
-          <script language="javascript" src="jeidy/lib/tests.js"/>
+          <script language="javascript" src="jeidy/lib/tests.js" manager="javax"/>
         </sequential>
    </macrodef>
 
    <macrodef name="deploy">
         <sequential>
-          <script language="javascript" src="jeidy/lib/deploy.js"/>
+          <script language="javascript" src="jeidy/lib/deploy.js" manager="javax"/>
         </sequential>
    </macrodef>
 
    <macrodef name="clean">
         <sequential>
-          <script language="javascript" src="jeidy/lib/clean.js"/>
+          <script language="javascript" src="jeidy/lib/clean.js" manager="javax"/>
         </sequential>
    </macrodef>
 
    <macrodef name="help">
         <sequential>
-          <script language="javascript" src="jeidy/lib/help.js"/>
+          <script language="javascript" src="jeidy/lib/help.js" manager="javax"/>
         </sequential>
    </macrodef>
 
