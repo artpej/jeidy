@@ -1,0 +1,48 @@
+<project name="core" basedir="." default="">
+
+
+    <macrodef name="install">
+        <sequential>
+	  <script language="javascript" src="jeidy/lib/install.js"/> 
+        </sequential>
+    </macrodef>
+
+    <macrodef name="build">
+        <sequential>
+          <script language="javascript" src="jeidy/lib/compile.js"/> 
+        </sequential>
+    </macrodef>
+
+    <macrodef name="dist">
+        <sequential>
+          <script language="javascript" src="jeidy/lib/dist.js"/>
+        </sequential>
+    </macrodef>
+
+   <macrodef name="tests">
+        <sequential>
+          <script language="javascript" src="jeidy/lib/tests.js"/>
+        </sequential>
+   </macrodef>
+
+   <macrodef name="deploy">
+        <sequential>
+          <script language="javascript" src="jeidy/lib/deploy.js"/>
+        </sequential>
+   </macrodef>
+
+   <macrodef name="clean">
+        <sequential>
+          <script language="javascript" src="jeidy/lib/clean.js"/>
+        </sequential>
+   </macrodef>
+
+   <macrodef name="help">
+        <sequential>
+          <script language="javascript" src="jeidy/lib/help.js"/>
+        </sequential>
+   </macrodef>
+
+
+
+</project>

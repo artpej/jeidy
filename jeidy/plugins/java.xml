@@ -1,0 +1,25 @@
+<project name="java-ext" basedir="." default="">
+
+  <property name="java.installed"  value="true"/>
+
+  <target name="java-install">
+  </target>
+
+  <target name="java-compile">
+    <mkdir dir="${build}/main"/>
+    <javac srcdir="${compile.sources.path}" destdir="${build}/main" classpathref="build.classpath" deprecation="on" fork="true" includeantruntime="false">
+       <include name="**/*.java" />
+    </javac>
+  </target>
+
+  <target name="java-dist">
+  </target>
+
+  <target name="java-tests">
+  </target>
+
+  <target name="java-deploy">
+  </target>
+
+
+</project>

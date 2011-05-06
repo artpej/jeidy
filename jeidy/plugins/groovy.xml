@@ -1,0 +1,47 @@
+<project name="groovy-ext" basedir="." default="">
+
+
+  <condition property="groovy.installed">
+      <resourceexists>
+        <file file="${groovy.home}"/>
+      </resourceexists>
+  </condition>
+
+  <path id="groovy.build.path">
+    <fileset dir="${groovy.home}">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="groovy-install">
+        <get src="${groovy.download.url}" dest="${jeidy.work}"/>
+        <unzip src="${jeidy.work}/${groovy.archive.file}" dest="${jeidy.work}"/>
+        <mkdir dir="${groovy.home}"/>
+        <move file="${jeidy.work}/${groovy.extract.dir}" tofile="${groovy.home}"/>
+  </target>
+
+
+  <target name="groovy-compile">
+    <path id="groovy.classpath">
+      <fileset dir="${groovy.home}/lib">
+        <include name="**/*.jar"/>
+      </fileset>
+    </path>
+    <taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc" classpathref="groovy.classpath"/>
+    <mkdir dir="${build}/main"/>
+    <groovyc srcdir="${compile.sources.path}" destdir="${build}/main" classpathref="build.classpath" fork="true" includeantruntime="false">
+      <include name="**/*.groovy" />
+    </groovyc>
+  </target>
+
+  <target name="groovy-dist">
+  </target>
+
+  <target name="groovy-tests">
+  </target>
+
+  <target name="groovy-deploy">
+  </target>
+
+
+</project>

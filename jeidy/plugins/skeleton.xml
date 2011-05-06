@@ -1,0 +1,27 @@
+<project name="skeleton-ext" basedir="." default="">
+
+  <condition property="skeleton.installed">
+      <resourceexists>
+        <file file="${skeleton.home}"/>
+      </resourceexists>
+  </condition>
+
+  <path id="skeleton.build.path">
+  </path>
+
+  <target name="skeleton-install">
+  </target>
+
+  <target name="skeleton-compile">
+  </target>
+
+  <target name="skeleton-dist">
+  </target>
+
+  <target name="skeleton-tests">
+  </target>
+
+  <target name="skeleton-deploy">
+  </target>
+
+</project>

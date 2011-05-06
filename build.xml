@@ -1,0 +1,87 @@
+<project name="jeidy" default="build" basedir=".">
+
+  <description></description>
+
+
+  <property file="jeidy/config.properties" />
+
+  <property name="build" location="build"/>
+  <property name="dist"  location="dist"/>
+
+
+  <mkdir dir="${jeidy.home}"/>
+  <mkdir dir="${jeidy.work}"/>
+  
+  <!-- Import all plugins tasks descriptors -->
+  <import>
+    <fileset dir="jeidy/plugins">
+      <include name="**/*.xml"/>
+    </fileset>
+  </import>
+
+  <path id="build.classpath">
+
+    <pathelement location="${scala.home}/lib/scala-library.jar" />
+
+    <pathelement location="${jruby.home}/lib/jruby.jar"/>
+
+    <pathelement location="${rhino.home}/js.jar"/>
+
+    <fileset dir="${clojure.home}">
+      <include name="**/*.jar"/>
+    </fileset>
+
+    <fileset dir="${groovy.home}/lib">
+      <include name="**/*.jar"/>
+    </fileset>
+
+    <pathelement location="${build}/main" />
+
+    <fileset dir="${compile.library.path}">
+      <include name="**/*.jar"/>
+    </fileset>
+
+  </path>
+
+
+
+  <target name="init">
+    <mkdir dir="${build}"/>
+    <mkdir dir="${dist}"/>
+    <install />
+  </target>
+
+  <target name="build" depends="init">
+    <build />
+  </target>
+
+  <target name="dist" depends="build">
+    <dist />
+  </target>
+
+  <target name="tests" depends="build">
+    <tests />
+  </target>
+
+  <target name="clean" description="clean up" >
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <clean />
+  </target>
+
+  <target name="run" >
+    <java classname="org.example.java.Example" fork="true" failonerror="true" classpathref="build.classpath">
+    </java>
+  </target>
+
+  <target name="check" >
+
+
+  </target>
+
+  <target name="help">
+    <help />
+  </target>
+
+</project>
+

@@ -1,0 +1,79 @@
+<project name="rhino-ext" basedir="." default="">
+
+
+  <condition property="rhino.installed">
+      <resourceexists>
+        <file file="${rhino.home}"/>
+      </resourceexists>
+  </condition>
+
+  <path id="rhino.build.path">
+    <pathelement location="${rhino.home}/js.jar"/>
+  </path>
+
+  <target name="rhino-install">
+    <get src="${rhino.download.url}" dest="${jeidy.work}"/>
+    <unzip src="${jeidy.work}/${rhino.archive.file}" dest="${jeidy.work}"/>
+    <mkdir dir="${rhino.home}"/>
+    <move file="${jeidy.work}/${rhino.extract.dir}" tofile="${rhino.home}"/>
+  </target>
+
+
+
+  <target name="rhino-compile">
+    <mkdir dir="${build}/main"/>
+
+    <script language="javascript" classpathref="build.classpath" manager="javax">
+      <![CDATA[
+	importClass(java.io.File);
+	importClass(org.mozilla.javascript.tools.jsc.Main);
+
+	function compile(f,p) {
+
+		var args = [
+                                "-d",
+                                project.getProperty("build")+"/main",
+                                "-opt",
+                                project.getProperty("rhino.optimization"),
+                                "-extends",
+                                project.getProperty("rhino.super"),
+                                "-package",
+                                p
+                        ];
+
+		for each (var file in f.listFiles()){
+			if(file.isFile() && file.getName().endsWith(".js")){
+				args.push(file.getPath());
+			}
+			if(file.isDirectory()){
+				if ( p !== "" )
+					compile( file , p +"."+file.getName());
+				else
+					compile( file , file.getName());
+			}
+		}
+		if(args.length > 8){
+			 Main.main(args);
+		}
+	}
+	
+	var file = new File(project.getProperty("compile.sources.path"));
+
+	compile( file , "" );
+	
+      ]]>
+    </script>
+
+  </target>
+
+  <target name="rhino-dist">
+  </target>
+
+  <target name="rhino-tests">
+  </target>
+
+  <target name="rhino-deploy">
+  </target>
+
+
+</project>

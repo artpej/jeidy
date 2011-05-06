@@ -1,0 +1,47 @@
+<project name="jruby-ext" basedir="." default="">
+
+
+  <condition property="jruby.installed">
+      <resourceexists>
+        <file file="${jruby.home}"/>
+      </resourceexists>
+  </condition>
+
+  <path id="jruby.build.path">
+    <pathelement location="${jruby.home}/lib/jruby.jar"/>
+  </path>
+
+  <target name="jruby-install">
+        <get src="${jruby.download.url}" dest="${jeidy.work}"/>
+        <untar compression="gzip" src="${jeidy.work}/${jruby.archive.file}" dest="${jeidy.work}"/>
+        <mkdir dir="${jruby.home}"/>
+        <move file="${jeidy.work}/${jruby.extract.dir}" tofile="${jruby.home}"/>
+	<chmod file="${jruby.home}/bin/jrubyc" perm="+rx"/>
+	<chmod file="${jruby.home}/bin/jruby" perm="+rx"/>
+  </target>
+
+  <target name="jruby-compile">
+    <mkdir dir="${build}/main"/>
+    <property environment="env"/>
+    <exec executable="${jruby.home}/bin/jrubyc">
+      <env key="PATH" path="${env.PATH}:${jruby.home}/bin"/>
+      <arg value="--dir"/>
+      <arg value="${compile.sources.path}"/>
+      <arg value="--target"/>
+      <arg value="${build}/main"/>
+      <arg value="--javac"/>
+      <arg value="${compile.sources.path}"/>
+    </exec>
+  </target>
+
+  <target name="jruby-dist">
+  </target>
+
+  <target name="jruby-tests">
+  </target>
+
+  <target name="jruby-deploy">
+  </target>
+
+
+</project>

@@ -1,0 +1,50 @@
+<project name="scala-ext" basedir="." default="">
+
+  <property name="scala.help">
+	No specific help for Scala.
+  </property>
+
+
+  <condition property="scala.installed">
+      <resourceexists>
+        <file file="${scala.home}"/>
+      </resourceexists>
+  </condition>
+
+  <path id="scala.build.path">
+    <pathelement location="${scala.home}/lib/scala-library.jar" />
+  </path>
+
+  <target name="scala-install">
+    <get src="${scala.download.url}" dest="${jeidy.work}"/>
+    <untar compression="gzip" src="${jeidy.work}/${scala.archive.file}" dest="${jeidy.work}"/>
+    <mkdir dir="${scala.home}"/>
+    <move file="${jeidy.work}/${scala.extract.dir}" tofile="${scala.home}"/>
+  </target>
+
+
+
+  <target name="scala-compile">
+    <taskdef resource="scala/tools/ant/antlib.xml">
+      <classpath>
+        <pathelement location="${scala.home}/lib/scala-compiler.jar" />
+        <pathelement location="${scala.home}/lib/scala-library.jar" />
+      </classpath>
+    </taskdef>
+    <mkdir dir="${build}/main"/>
+    <scalac srcdir="${compile.sources.path}" destdir="${build}/main" classpathref="build.classpath" deprecation="on">
+      <include name="**/*.scala" />
+    </scalac>
+  </target>
+
+  <target name="scala-dist">
+  </target>
+
+  <target name="scala-tests">
+  </target>
+
+  <target name="scala-deploy">
+  </target>
+
+
+</project>

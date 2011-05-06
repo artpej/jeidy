@@ -1,0 +1,27 @@
+<project name="proguard-ext" basedir="." default="">
+
+
+  <condition property="proguard.installed">
+      <resourceexists>
+        <file file="${proguard.home}"/>
+      </resourceexists>
+  </condition>
+
+  <target name="proguard-install">
+    <get src="${proguard.download.url}" dest="${jeidy.work}"/>
+    <untar compression="gzip" src="${jeidy.work}/${proguard.archive.file}" dest="${jeidy.work}"/>
+    <mkdir dir="${proguard.home}"/>
+    <move file="${jeidy.work}/${proguard.extract.dir}" tofile="${proguard.home}"/>
+  </target>
+
+  <target name="proguard-dist">
+	<taskdef resource="proguard/ant/task.properties" classpath="${proguard.home}/lib/proguard.jar" />
+	<proguard>
+		@${proguard.config.file}
+		-libraryjars ${java.home}/lib/rt.jar
+		-injars      ${project.name}-${project.version}.jar
+		-outjars     ${dist}/${project.name}-${project.version}.jar
+	</proguard>
+  </target>
+
+</project>

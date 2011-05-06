@@ -1,0 +1,43 @@
+<project name="clojure-ext" basedir="." default="">
+
+  <condition property="clojure.installed">
+      <resourceexists>
+        <file file="${clojure.home}"/>
+      </resourceexists>
+  </condition>
+
+  <path id="clojure.build.path">
+    <fileset dir="${clojure.home}">
+      <include name="**/*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="clojure-install">
+    <get src="${clojure.download.url}" dest="${jeidy.work}"/>
+    <unzip src="${jeidy.work}/${clojure.archive.file}" dest="${jeidy.work}"/>
+    <mkdir dir="${clojure.home}"/>
+    <move file="${jeidy.work}/${clojure.extract.dir}" tofile="${clojure.home}"/>
+  </target>
+
+  <target name="clojure-compile">
+    <mkdir dir="${build}/main"/>
+    <pathconvert pathsep=" " property="compile.namespaces">
+      <fileset dir="${compile.sources.path}" includes="**/*.clj"/>
+      <chainedmapper>
+        <packagemapper from="${compile.sources.path}/*.clj" to="${clojure.package.prefix}*"/>
+        <filtermapper>
+           <replacestring from="_" to="-"/>
+         </filtermapper>
+       </chainedmapper>
+    </pathconvert>
+
+    <java classname="clojure.lang.Compile" fork="true" failonerror="true" classpathref="build.classpath">
+      <classpath >
+        <pathelement location="${compile.sources.path}"/>
+      </classpath>
+      <sysproperty key="clojure.compile.path" value="${build}/main"/>
+      <arg line="${compile.namespaces}"/>
+    </java>
+  </target>
+
+</project>
