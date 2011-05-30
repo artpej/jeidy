@@ -9,7 +9,7 @@ try{
 	var path = new Path(project);
 
 	for each ( var plugin in plugins ){
-		if( project.getProperty(plugin+".enabled") && project.getProperty(plugin+".installed")){
+		if( project.getProperty(plugin+".enabled") == "true" && project.getProperty(plugin+".installed")){
 			if(project.getReference(plugin+".build.path")!=null)
 				path.add(project.getReference(plugin+".build.path"));
 		}

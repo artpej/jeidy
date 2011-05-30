@@ -5,7 +5,7 @@ try{
         var targets = project.getTargets();
 
 	for each ( var plugin in plugins ){
-		if( project.getProperty(plugin+".enabled") && !project.getProperty(plugin+".installed") && targets.containsKey(plugin+"-install")){
+		if( project.getProperty(plugin+".enabled") == "true" && !project.getProperty(plugin+".installed") && targets.containsKey(plugin+"-install")){
 			project.executeTarget(plugin+"-install");
 		}
 	}
